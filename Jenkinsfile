@@ -13,12 +13,6 @@ pipeline {
         sh './mvnw clean install'
       }
     }
-    stage('Check Docker') {
-      steps {
-        sh 'docker version'
-      }
-    }
-
     stage('Upload to Artifactory') {
       agent {
         docker {
