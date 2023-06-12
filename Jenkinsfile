@@ -1,5 +1,5 @@
 pipeline {
-  agent any
+  agent { label 'linux' }
   options {
     buildDiscarder(logRotator(numToKeepStr: '5'))
   }
@@ -16,7 +16,7 @@ pipeline {
     stage('Upload to Artifactory') {
       agent {
         docker {
-          image 'halternz/jfrog-cli-go' 
+          image 'releases-docker.jfrog.io/jfrog/jfrog-cli-v2:2.2.0' 
           reuseNode true
         }
       }
@@ -25,4 +25,4 @@ pipeline {
       }
     }
   }
-} 
+}
